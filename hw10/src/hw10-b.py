@@ -1,3 +1,4 @@
+
 from  PIL import Image
 import numpy as np 
 import math
@@ -8,10 +9,9 @@ im=Image.open('../lena.bmp')
 img=np.asarray(im)
 r, c = img.shape
 
-
-mask=np.array([[0,1,0],
-               [1,-4,1],
-               [0,1,0]])
+mask=np.array([[1,1,1],
+               [1,-8,1],
+               [1,1,1]])/3
 
 img=np.pad(img,(1,1),'edge')
 mat=np.zeros((r,c),dtype=np.int32)
@@ -41,13 +41,7 @@ for i in range(1,r+1):
         else:
             final[i-1][j-1] =  255
 
-
-
-
-
-
-
 im=Image.fromarray(final)
 im.show()
 im=im.convert('L')
-im.save('lena_laplace1.bmp',format='BMP')
+im.save('lena_laplace2.bmp',format='BMP')
